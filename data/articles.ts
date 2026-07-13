@@ -47,7 +47,7 @@ export const articles: Article[] = [
     excerpt: 'Stop phones, coins, and pens from disappearing into the front seat gap with these top-rated fillers.',
     coverImage: 'https://m.media-amazon.com/images/I/71aaOjmFYtL._AC_SL1440_.jpg',
     readTime: '7 min read',
-    productCount: 6,
+    productCount: 5,
     updatedDate: 'June 2026',
   },
   {
@@ -57,7 +57,7 @@ export const articles: Article[] = [
     excerpt: 'Block UV rays and cut cabin heat with sunshades built for fast setup and lasting reflectivity.',
     coverImage: 'https://m.media-amazon.com/images/I/71W3+eLCARL._AC_SL1500_.jpg',
     readTime: '8 min read',
-    productCount: 6,
+    productCount: 5,
     updatedDate: 'June 2026',
   },
   {
@@ -77,7 +77,7 @@ export const articles: Article[] = [
     excerpt: 'From full-set covers to single-seat protectors, these picks guard your interior from spills and wear.',
     coverImage: 'https://m.media-amazon.com/images/I/61FrxuGwXeL._SL1500_.jpg',
     readTime: '9 min read',
-    productCount: 6,
+    productCount: 5,
     updatedDate: 'June 2026',
   },
   {
