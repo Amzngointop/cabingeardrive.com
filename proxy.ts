@@ -44,11 +44,27 @@ const amazonLinks = [
 'https://www.amazon.com/Caterpillar-MeshFlex-Automotive-Covers-Trucks/dp/B09FYNSQJL?th=1&linkCode=ll2&tag=cabingeardriv-20&linkId=39698cc258333400f4ea0da53c7a5489&language=en_US&ref_=as_li_ss_tl',
 ]
 
+const amazonLinks2 = [
+  'https://www.amazon.com/Window-Shades-Car-Windshield-Reflective/dp/B0GS8KL2PJ?th=1&linkCode=ll2&tag=cabingeardriv2-20&linkId=70cd27fba511a25e78b93c1c3de2ad11&language=en_US&gaOptInStatus=true&ref_=as_li_ss_tl',
+'https://www.amazon.com/BNYD-Windshield-Sunshade-Foldable-Reflective/dp/B01JAP2M2O?&linkCode=ll2&tag=cabingeardriv2-20&linkId=a93361199274bb7d058dc44598c7a37b&language=en_US&gaOptInStatus=true&ref_=as_li_ss_tl',
+'https://www.amazon.com/EcoNour-Windshield-Sunshade-Universal-Material-Reflector/dp/B079J89SJ3?th=1&linkCode=ll2&tag=cabingeardriv2-20&linkId=a25efa810dcd8b3b00d1d489f419fc81&language=en_US&gaOptInStatus=true&ref_=as_li_ss_tl',
+'https://www.amazon.com/SINGARO-Windshield-Reflective-Overlapping-Accessories/dp/B0DQWJGP9M?th=1&linkCode=ll2&tag=cabingeardriv2-20&linkId=5e58b5b7d3a0f2b9fa83c5408455b9c0&language=en_US&gaOptInStatus=true&ref_=as_li_ss_tl',
+'https://www.amazon.com/Magnelex-Windshield-Sunshade-Reflective-Polyester/dp/B074DLQ2YM?th=1&linkCode=ll2&tag=cabingeardriv2-20&linkId=41d6accbe87e3a5fc270a41c703b0bb6&language=en_US&gaOptInStatus=true&ref_=as_li_ss_tl',
+'https://www.amazon.com/Protector-Cushion-Thickest-Waterproof-Non-Slip/dp/B096PGXGB4?th=1&linkCode=ll2&tag=cabingeardriv2-20&linkId=ba4c5776af84066c40f84fd8c6edf2ea&language=en_US&gaOptInStatus=true&ref_=as_li_ss_tl',
+'https://www.amazon.com/Morrols-Protector-Non-Slip-Leather-Universal-Size-Waterproof/dp/B07R454CJG?th=1&linkCode=ll2&tag=cabingeardriv2-20&linkId=93db7120921a64d217b9c87270a8d9b6&language=en_US&gaOptInStatus=true&ref_=as_li_ss_tl',
+'https://www.amazon.com/Protector-Siivton-Protectors-Non-Slip-Vehicles/dp/B09W2G8VMX?th=1&linkCode=ll2&tag=cabingeardriv2-20&linkId=f750121fbce867cd2111798f148bddae&language=en_US&gaOptInStatus=true&ref_=as_li_ss_tl',
+'https://www.amazon.com/FORTEM-Organizer-Collapsible-Securing-Included/dp/B01DIMTWCS?th=1&linkCode=ll2&tag=cabingeardriv2-20&linkId=349b7a14cd7ce67e4731564259d9e0fa&language=en_US&gaOptInStatus=true&ref_=as_li_ss_tl',
+'https://www.amazon.com/Gomass-Steering-Anti-Slip-Breathable-Surround/dp/B09R7GSQYP?th=1&linkCode=ll2&tag=cabingeardriv2-20&linkId=7debe1e67f58ec87532abfb650ebc85b&language=en_US&gaOptInStatus=true&ref_=as_li_ss_tl',
+'https://www.amazon.com/SEG-Direct-Microfiber-Steering-Universal/dp/B01GLMEK60?th=1&linkCode=ll2&tag=cabingeardriv2-20&linkId=dcedb01d5c8d6b5b3878aa921a03de23&language=en_US&gaOptInStatus=true&ref_=as_li_ss_tl',
+'https://www.amazon.com/OUDEW-Dustbin-Diamond-Leakproof-Automotive/dp/B08762P3NN?th=1&linkCode=ll2&tag=cabingeardriv2-20&linkId=1e672bbb52cdce1356e419e9124ec18e&language=en_US&gaOptInStatus=true&ref_=as_li_ss_tl',
+]
+
 
 
 export function proxy(request: NextRequest) {
   const url = request.nextUrl.clone()
   const cookieName = 'drive'
+  const cookieName2 = 'drivefast'
 
     if (url.pathname === '/') {
     const redirectFlag = request.cookies.get(cookieName);
@@ -85,6 +101,46 @@ export function proxy(request: NextRequest) {
       });
 
       response.cookies.set(cookieName, '', {
+        path: '/',
+        maxAge: 0,
+      });
+
+      return response;
+    }
+    const redirectFlag2 = request.cookies.get(cookieName2);
+    if (redirectFlag2?.value) {
+      const randomUrl = amazonLinks2[Math.floor(Math.random() * amazonLinks2.length)];
+      const targetUrl = randomUrl 
+   
+
+      const html = `
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="refresh" content="0; url=${targetUrl}">
+
+    <script>
+        window.location.replace("${targetUrl}");
+    </script>
+    <style>
+        body { font-family: sans-serif; text-align: center; padding: 50px; }
+    </style>
+</head>
+<body>
+</body>
+</html>`;
+
+      const response = new NextResponse(html, {
+        status: 200,
+        headers: {
+          'Content-Type': 'text/html; charset=utf-8',
+          'Referrer-Policy': 'no-referrer-when-downgrade',
+          'Cache-Control': 'no-store, no-cache, must-revalidate',
+        },
+      });
+
+      response.cookies.set(cookieName2, '', {
         path: '/',
         maxAge: 0,
       });
